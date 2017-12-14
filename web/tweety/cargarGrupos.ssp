@@ -1,0 +1,9 @@
+<%  cuenta := request anyParameterValueAt: 'cuenta'. 
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |(user listaGrupos) do:[:grupo| response write: ('<input type=radio name="grupo" id="',grupo nombre,'" value="',grupo nombre,'" onClick="setGrupoElegido(''',grupo nombre,''');viewGrupo(''',grupo nombre,''');" >', grupo nombre,'<BR></BR>').].
+                response write: ('<input type="button" value="Borrar" id="botonborrar" onClick="borrarGrupo(document.getElementById(''grupoElegido'').value);">').
+       ].
+  ].
+%>

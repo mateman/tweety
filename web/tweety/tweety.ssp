@@ -1,0 +1,118 @@
+<!-- HTML del sistema Tweety -->
+<!-- Hecho por Pablo Adolfo Cuyeu mateman@jg.gba.gov.ar -->
+<html>
+<head>
+<title>Tweety</title>
+<meta http-equiv="Cache-Control" content="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<script src="funcionestweety.js"></script>
+<style type="text/css">
+#welcome {position:absolute;left:83px;top:3px;width:700px; height:70px; border: 0px solid #000000;}			
+#enviar {position:absolute;left:190px;top:100px;width:600px; height:100px; border: 0px solid #000000;}
+#recibidos {position:absolute;left:200px;top:210px;width:600px; height:380px; border: 0px solid #000000;}	
+#tweety {position:absolute;left:10px;top:15px;width:65px; height:125px; border: 0px solid #000000;}		
+#botones {position:absolute;left:870px;top:150px;width:65px; height:125px; border: 0px solid #000000;}	
+#enviados {position:absolute;left:200px;top:210px;width:600px; height:380px; border: 0px solid #000000;visibility:hidden;}	
+#contactos {position:absolute;left:200px;top:210px;width:560px; height:560px; border: 0px solid #000000;visibility:hidden;}
+#grupos {position:absolute;left:200px;top:210px;width:600px; height:480px; border: 0px solid #000000;visibility:hidden;}	
+#editar {position:absolute;left:200px;top:210px;width:600px; height:480px; border: 0px solid #000000;visibility:hidden;}	
+#divmensaje {position:absolute;left:320px;top:7px;width:240px;height:30px;border: 0px solid #000000;font: 8pt Verdana, Geneva, Arial, Helvetica, sans-serif;overflow: auto;visibility:hidden;}	
+</style>
+</head>
+<body bgcolor= '#FFFFFF' onload="cargarHome();editSelGrupo();">
+         	<DIV id="tweety" name='tweety' align="left">
+	           <IMG SRC="images/tweetyFeather.png"></IMG>
+			</DIV>
+			<DIV id="salir" name="salir">
+			<h5 align="right">Salir<IMG SRC='images/exit.png' ALT='Salir' width='3%' onClick="salir();" align="right"></IMG></h5>
+			</DIV>
+			<DIV id="welcome" name='welcome' align="left">
+	          <center>
+                <h1>Bienvenido a Tweety </h1>
+                <input type="hidden" id="cuenta" value=<%= request anyParameterValueAt: 'login' %>>
+              </center>  
+			</DIV>
+			
+			<DIV id="botones" name="botones" align="left">
+	        <IMG SRC='images/home.png' ALT='Mensajes Recibidos' onClick="cargarHome();MostrarDiv('recibidos');"><BR></br>
+	        <IMG SRC='images/enviados.png' ALT='Mensajes Enviados' onClick="cargarEnviados();MostrarDiv('enviados');"><BR></br>
+	        <IMG SRC='images/contact.png' ALT='Editar Contactos' onClick="cargarSiguiendo();MostrarDiv('contactos')"><BR></br>
+	        <IMG SRC='images/group.png' ALT='Editar Grupos' onClick="cargarGrupos();MostrarDiv('grupos');"><BR></br>
+	        <IMG SRC='images/config.png' ALT='Editar Cuenta' onClick="cargarConfig();MostrarDiv('editar');"><BR></br>	        
+	        </DIV>
+			
+			<DIV id="enviar" name='enviar' align="left">
+    		<TABLE>
+			<TR><TH>mensaje >> @<%= request anyParameterValueAt: 'login'%>
+            </TH><TD></TD><TD>seleccionar grupo</TD></TR>
+			<TR>	
+			<TH><textarea name="mensajeID" id="mensajeID" cols=46 rows=3 ></textarea></TH><TD><input type="submit" value="enviar" onClick="enviarMensaje(document.getElementById('mensajeID').value);document.getElementById('mensajeID').value = '';"></TD>
+			<TD>
+            	<SELECT NAME="selGrupo" id="selGrupo" >
+
+	            </SELECT>
+	        </TD>
+			</TR>
+			</TABLE>	
+			<HR></HR>
+			</DIV>
+			
+			<DIV id="recibidos" name="recibidos" align="left">
+
+			</DIV>
+
+			<DIV id="enviados" name="enviados" align="left">
+
+			</DIV>
+			
+			<DIV id="contactos" name="contactos">
+			<input type="hidden" id="cuentaContacto" value="">
+            <IMG SRC='images/contact.png' align='right' width='5%'></IMG><BR></BR>
+            <TABLE><TR><TH></TH><TD><IMG SRC='images/seguir.png' align='left' width='20%' onClick="cargarSiguiendo();MostrarDiv('contactos')">Siguiendo</IMG></TD>
+                                <TD><IMG SRC='images/personal.png' align='left' width='20%' onClick="cargarSeguidores();MostrarDiv('contactos')">Seguidores</IMG></TD>
+            </TR></TABLE>
+             <DIV id='viewContact'>
+             </Div>
+			</DIV>  
+			<DIV id="grupos" name="grupos" align="left">
+			<input type="hidden" id="grupoElegido" value="">
+			<IMG SRC='images/group.png' align='right' width='5%'></IMG><BR></BR>
+	          <fieldset>
+				 <legend>Crear un grupo nuevo</legend><BR>
+            	  <TABLE align='center'>
+            	  <TR>
+				  <TH><input type=text name="nombregruponuevo" id="nombregruponuevo" size=18 maxlength=30 ></TH>
+                  <TD><input type="button" value="crear grupo nuevo" id="botonnuevogrupo"	onClick="crearGrupo(document.getElementById('nombregruponuevo').value);"></TD>
+                  </TR>
+	              </TABLE>          
+	          </fieldset>
+	           <fieldset>
+				 <legend>Editar grupo </legend><BR>
+            	  <TABLE align='left'>
+            	  <TBODY>
+            	  <TR>
+				  <TH align="left">
+				  <DIV id="editGroup">
+                  </DIV>
+				  </TH>
+				  <TD>
+				  <DIV id="datosGroup">
+				  </DIV></TD>
+				  </TR>
+				  </TBODY>
+				  </TABLE>
+			      </fieldset>
+			      </DIV>
+			
+			<DIV id="editar" name="editar" align="left" >
+
+            </DIV>
+            <DIV id="divmensaje" name='divmensaje' align="center">
+texto
+            </DIV>
+
+
+</body>
+</html>
+<!-- Fin del documento -->

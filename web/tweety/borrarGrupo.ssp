@@ -1,0 +1,11 @@
+ <%
+  cuenta := (request anyParameterValueAt: 'cuenta').
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user | user eliminarGrupo: (user listaGrupos detect:[:grupo | (grupo nombre) = (request anyParameterValueAt: 'grupo').]).
+                response write: ('<input type="hidden" id="c" value="true">').
+                response write: ('Con Exito!').].]
+   ifFalse:[response write: ('<input type="hidden" id="c" value="false">').
+                response write: ('No se pudo').].
+ %>

@@ -1,0 +1,12 @@
+ <%
+  cuenta := (request anyParameterValueAt: 'cuenta').
+  grupo := (request anyParameterValueAt: 'grupo').
+ ((cuenta size) > 0 and:[(grupo size) > 0])
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user | user crearGrupo:grupo.
+                response write: ('<input type="hidden" id="c" value="true">').
+                response write: ('Con Exito!').].]
+   ifFalse:[response write: ('<input type="hidden" id="c" value="false">').
+                response write: ('No se pudo').].
+ %>

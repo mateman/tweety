@@ -1,0 +1,5 @@
+<% 
+ (Sistema getInstance existe:(request anyFormValueAt: 'cuenta')) ifTrue: [ response write:'<P>Esta cuenta ya existe!</P><input type="hidden" id="c" value="false">'.]
+                                              ifFalse:[Sistema getInstance agregar:(Usuario new:(request anyFormValueAt: 'cuenta') nombre:(request anyFormValueAt: 'nombre') datos:(request anyFormValueAt: 'data') clave:(request anyFormValueAt: 'clave')).
+                                                       response write:'<P>Cuenta creada con exito!</P><input type="hidden" id="c" value="true">'.].
+%>

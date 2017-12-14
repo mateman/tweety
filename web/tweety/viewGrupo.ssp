@@ -1,0 +1,38 @@
+<fieldset>
+<legend>Elegir integrantes del grupo </legend>
+	<table>
+	<tbody>
+		<tr>
+		<td>Contactos</td><td></td><td>Grupo</td>
+		</tr>
+		<tr>
+			<td>
+				<select id="primero" style="width:150px; height: 100px;" name="primero" size="10">
+<%  cuenta := request anyParameterValueAt: 'cuenta'. 
+ (cuenta size) > 0
+  ifTrue: 
+     [session at: cuenta ifPresent: 
+       [ :user |grupo :=((user listaGrupos asOrderedCollection) detect:[:g|(g nombre) = (request anyParameterValueAt: 'grupo')] ifNone:[nil]). 
+                (user listaContactos select:[:con| (grupo listaContactos includes: con) not ]) do:[:contacto| response write: ('<option  value="',contacto nick,'" >@',contacto nick,'</option>').].
+ %>
+ ).
+				</select>
+			</td>
+			<td>
+				<input type="button" value="&rarr;" onclick="volcarSelects('primero', 'segundo');" />
+				<br>
+				<input type="button" value="&larr;" onclick="volcarSelects('segundo', 'primero');" />
+			</td>
+			<td>
+					<select style="width:150px; height: 100px;" id="segundo" name="segundo" size="10">
+<%           grupo listaContactos do:[:cont|response write: ('<option  value="',cont nick,'" >@',cont nick,'</option>').].
+       ].
+  ]. 
+%>
+				</select>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+<input type="button" name="guardarL" id="guardarL" value="Guardar" onClick="guardarL();">
+</fieldset>

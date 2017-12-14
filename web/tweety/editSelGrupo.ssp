@@ -1,0 +1,8 @@
+<OPTION VALUE="nil" >a todos</OPTION>
+<%  cuenta := request anyParameterValueAt: 'cuenta'. 
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |(user listaGrupos) do:[:grupo| response write: ('<OPTION VALUE="',grupo nombre,'">',grupo nombre,'</OPTION>').].].
+  ].
+%>

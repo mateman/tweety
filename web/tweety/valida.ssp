@@ -1,0 +1,11 @@
+<% 
+
+  login := request anyFormValueAt: 'login'. 
+  password := request anyFormValueAt: 'pwd'. 
+  usuario := Sistema getInstance login: login pass: password. 
+  usuario isNil ifTrue:[ response redirectTo: 'index.html'. ]
+              ifFalse:[session removeKey: login.
+                       session at: login put: usuario.
+                       response redirectTo: ('tweety.ssp?login=',login).            
+                      ]. 
+%> 

@@ -1,0 +1,12 @@
+<%
+
+  cuenta := (request anyParameterValueAt: 'cuenta').
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |user eliminarContacto:(user listaContactos detect:[:usuario | (usuario nick) = (request anyParameterValueAt: 'borrar')]).
+        response write: ('<input type="hidden" id="c" value="true">').
+                response write: ('Con Exito!').].]
+  ifFalse:[response write: ('<input type="hidden" id="c" value="false">').
+                response write: ('No se pudo').].
+%>

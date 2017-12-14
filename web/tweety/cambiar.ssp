@@ -1,0 +1,8 @@
+<% 
+ cuenta :=(request anyFormValueAt: 'cuenta').
+  (cuenta size) > 0
+  ifTrue:   
+        [ session at: cuenta ifPresent:[:user|user nombre:(request anyFormValueAt: 'nombre'); datos:(request anyFormValueAt: 'datos');clave:(request anyFormValueAt: 'clave').
+         response write:'<P>Cambiado con exito!</P><input type="hidden" id="c" value="true">'.].]
+  ifFalse:[response write:'<P>No se pudo actualizar los datos</P><input type="hidden" id="c" value="false">'.].
+%>

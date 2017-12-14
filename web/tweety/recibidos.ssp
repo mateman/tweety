@@ -1,0 +1,9 @@
+<%
+  cuenta := (request anyParameterValueAt: 'cuenta').
+   i = 0.
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [:user | (user listaRecibidos) reverse do:[:mensaje| response write: ('<p><h6 onMouseOver="document.getElementById(''resend-',(mensaje duenio nick),(mensaje fecha)printString,''').style.visibility= ''visible'';" onMouseOut="document.getElementById(''resend-',(mensaje duenio nick),(mensaje fecha)printString,''').style.visibility= ''hidden'';">@',(mensaje duenio nick),' - ',(mensaje fecha)printString,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG id="resend-',(mensaje duenio nick),(mensaje fecha)printString,'" SRC="images/reenviar.png" style="visibility:hidden" onClick="enviarMensaje(''',mensaje cuerpo,''');"></IMG><BR></BR>>', (mensaje cuerpo),'.</h6></p>').].].
+  ].
+%>

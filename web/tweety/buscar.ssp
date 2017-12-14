@@ -1,0 +1,16 @@
+<%
+  hidden := 'hidden'.
+  cuenta := (request anyParameterValueAt: 'cuenta').
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |list:= OrderedCollection new.
+                (u := Sistema getInstance buscar: (request anyParameterValueAt: 'valor')) isNil ifFalse:[list add:u].
+                list addAll: (Sistema getInstance buscarPorNombre: (request anyParameterValueAt: 'valor')).
+                list do:[:e| response write: ('<BR></BR><fieldset id="f', e nick,'"><TABLE><TR><TH>Nick:</TH><TD>',e nick,'</TD></TR><TR><TH>Nombre:</TH><TD>',e nombre,'</TD></TR><T<TR><TH>Datos:</TH><TD>',e datos,'</TD></TR></TABLE><input type="button" name="agregar" id="agregar" value="Agregar" onClick="agregarContacto(''',e nick,''');document.getElementById(''f',e nick,''').style.visibility='' hidden'';"></fieldset>').].].].
+ 
+
+ %>
+
+ 
+

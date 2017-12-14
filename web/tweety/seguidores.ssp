@@ -1,0 +1,19 @@
+<fieldset id="siguiendo">
+<legend>Contactos que me siguen</legend><BR>
+<TABLE><TR><TH align="left">
+<%
+  cuenta := (request anyParameterValueAt: 'cuenta').
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |(user listaContactos) do:[:contacto| response write: ('<input type=radio name="setcontact" id="',contacto nick,'" value="',contacto nick,'" onClick="setCuentaContacto(this.value);viewContactoSeguidores(this.value);">@',contacto nick,'<BR></BR>').].].].
+ %>
+ </TH>
+ <TD align="left">
+ <DIV id="datosContacto">
+ </DIV>
+ </TD>
+ </TR></TABLE>
+ <input type="button" name="borrar" id="borrar" value="Borrar Cuenta" class="formularios" onClick="borrarSeguidores();">
+</fielset>
+

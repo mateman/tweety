@@ -1,0 +1,12 @@
+ <fieldset>
+<%
+
+  cuenta := (request anyParameterValueAt: 'cuenta').
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |(c := (user listaSiguiendo detect:[:usuario | (usuario nick) = (request anyParameterValueAt: 'contacto')])).
+                response write: ('<TABLE><TR><TH>nombre:</TH><TD>',c nombre,'</TD></TR><TH>datos: </TH><TD>',c datos,' </TD></TR></TABLE> ').].
+  ].
+%>
+</fieldset>

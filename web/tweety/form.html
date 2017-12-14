@@ -1,0 +1,41 @@
+<!-- HTML para altas de cuentas de Tweety -->
+<!-- Hecho por Pablo Adolfo Cuyeu mateman@jg.gba.gov.ar -->
+<html>
+<head>
+<title>Crear cuenta Tweety</title>
+<script src="funcionesform.js"></script>
+<style type="text/css">
+#divcrear {position:absolute;left:200px;top:30px;width:500px; height:380px; border: 0px solid #000000;}			
+#tweety {position:absolute;left:20px;top:30px;width:500px; height:380px; border: 0px solid #000000;}			
+#divmensaje {position:absolute;left:320px;top:7px;width:240px;height:60px;border: 0px solid #000000;font: 8pt Verdana, Geneva, Arial, Helvetica, sans-serif;overflow: auto;}	
+</style>
+</head>
+<BODY bgcolor='#FFFFFF'>	
+<DIV id="tweety" name="tweety">
+<IMG SRC='images/piupiu1.png'>
+</DIV>
+
+<DIV id="divcrear" name='divcrear' align="left">			
+	<fieldset id="fcrear">
+	<legend>Crear cuenta</legend><BR>
+	<TABLE>
+	<TR><TH><P ALIGN="left">Nombre de cuenta: </P></TH><TD><input type=text name="cuenta" id="cuenta" size=12 maxlength=30 onBlur="vcuenta(this);" ><span id="mensaje"  style="color: red;background-color: yellow;visibility:hidden">Ya existe</span></TD></TR>
+	<TR><TH><P ALIGN="left">Nombre completo:</P></TH><TD><input type=text name="nombre" id="nombre" size=26 maxlength=45 onBlur="vnombre(this);"></TD></TR>
+	<TR><TH><P ALIGN="left">Datos Personales:</P></TH><TD><textarea name="datos" id="datos" cols=26 rows=5 ></textarea><TD></TR>
+	</TABLE>
+	<BR>
+	<TABLE>
+	<TR><TH><P ALIGN="left">Introduzca una clave:</P></TH><TD><input type=password id="secreto" name="secreto" size=10 maxlength=15 ></TD></TR>	
+	<TR><TH><P ALIGN="left">Vuelva a escribirla:</P></TH><TD><input type=password id="newsecreto" name="newsecreto" size=10 maxlength=15 onBlur="vpasswd(secreto, newsecreto)"></TD></TR>
+	</TABLE>
+	<BR>
+	<P align="right"><input type="button" value="Crear cuenta" id="botoncrearcuenta" class="formularios"	onClick="vtodo();">
+	</fieldset>
+</DIV>
+
+<DIV id="divmensaje" name='divmensaje' align="center">
+
+</DIV>
+</body>
+</html>
+<!-- Fin del documento -->

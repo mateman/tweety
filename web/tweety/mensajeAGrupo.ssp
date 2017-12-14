@@ -1,0 +1,17 @@
+<%
+  cuenta := request anyParameterValueAt: 'cuenta'.
+  mensaje := request anyParameterValueAt: 'mensaje'.
+  grupo :=  request anyParameterValueAt: 'grupo'.
+ ((cuenta size) > 0 and:[(mensaje size) > 0])
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user | (g := user listaGrupos select:[:unGrupo | (unGrupo nombre) = grupo]) isEmpty 
+                ifTrue:[response write: ('<input type="hidden" id="c" value="false">').
+                        response write: ('No se pudo').]
+                ifFalse:[  user enviar: mensaje a: (g first).
+                           response write: ('<input type="hidden" id="c" value="true">').
+                           response write: ('Con Exito!').].].]
+  ifFalse:[response write: ('<input type="hidden" id="c" value="false">').
+           response write: ('No se pudo').].
+%>
+

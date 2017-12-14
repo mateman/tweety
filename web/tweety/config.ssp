@@ -1,0 +1,19 @@
+<IMG SRC='images/config.png' align='right' width='5%'></IMG><BR></BR>
+<fieldset id="fedit" >
+<TABLE>
+<TR><TH><P ALIGN="left">Nombre de cuenta: </P></TH><TD>
+<%  
+ cuenta := request anyParameterValueAt: 'cuenta'. 
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |response write: (cuenta).
+                response write: ('</TD></TR><TR><TH><P ALIGN="left">Nombre completo:</P></TH><TD><input type=text name="edinombre" id="edinombre" size=26 maxlength=45 value="', (user nombre),'" onBlur="vnombre(this);"></TD></TR>').
+                response write: ('<TR><TH><P ALIGN="left">Datos Personales:</P></TH><TD><textarea name="edidatos" id="edidatos" cols=26 rows=5>', (user datos),'</textarea><TD></TR></TABLE><BR>').
+                response write: ('<TABLE><TR><TH><P ALIGN="left">Introduzca una clave:</P></TH><TD><input type=password id="edisecreto" name="edisecreto" size=10 maxlength=15 value=''''"></TD></TR>').
+                response write: ('<TR><TH><P ALIGN="left">Vuelva a escribirla:</P></TH><TD><input type=password id="edinewsecreto" name="edinewsecreto" size=10 maxlength=15  value=''''" onBlur="vpasswd(edisecreto, edinewsecreto)" ></TD></TR>').].].
+%>               
+</TABLE>
+<BR>
+<input type="button" value="modificar tus datos" id="botonmodificarcuenta"	onClick="cambiar_cuenta( encodeURIComponent(document.getElementById('edinombre').value), encodeURIComponent(document.getElementById('edidatos').value), encodeURIComponent(document.getElementById('edisecreto').value),encodeURIComponent(document.getElementById('edinewsecreto').value));">
+</fieldset>

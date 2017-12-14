@@ -1,0 +1,9 @@
+<%  cuenta := request anyParameterValueAt: 'cuenta'. 
+ (cuenta size) > 0
+  ifTrue: 
+     [session at: cuenta ifPresent: 
+       [ :user |(grupo :=((user listaGrupos asOrderedCollection) detect:[:g|(g nombre) = (request anyParameterValueAt: 'grupo')] ifNone:[nil])) removerContacto:(grupo listaContactos detect:[:cont | (cont nick) = (request anyParameterValueAt: 'contacto')] ifNone:[nil]). 
+                response write: 'Borrando'.
+       ].
+     ]. 
+%>

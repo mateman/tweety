@@ -1,0 +1,6 @@
+<html>
+<head></head>
+<body>
+<input type="hidden" id="c" value=<%=(Sistema getInstance existe:(request anyFormValueAt: 'cuenta')) printString%>>
+</body>
+</html

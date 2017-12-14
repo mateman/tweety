@@ -1,0 +1,8 @@
+<IMG SRC='images/enviados.png' align='right' width='5%'></IMG><BR></BR>
+<%  cuenta := request anyParameterValueAt: 'cuenta'. 
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user |(user listaEnviados) reverse do:[:mensaje| response write: ('<p></p><h6>',(mensaje fecha)printString,' > ', (mensaje cuerpo),'.</h6>').].].
+  ].
+%>

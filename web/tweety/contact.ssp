@@ -1,0 +1,16 @@
+<DIV id="listarContactos">
+</DIV>
+<fieldset>
+<legend>Buscar Contacto</legend><BR>
+<TABLE align='center'>
+<TBODY>
+<TR>
+<TH><input type=text name="contactoBuscar" id="contactoBuscar" size=22 maxlength=40 ></TH>
+<TD><P align="right"><input type="button" value="Buscar" id="botonbuscar"	onClick="buscarContactos(document.getElementById('contactoBuscar').value);"></TD>
+</TR>
+</TBODY>
+</TABLE>          
+</fieldset>
+
+<DIV id="contBuscar">
+</DIV>

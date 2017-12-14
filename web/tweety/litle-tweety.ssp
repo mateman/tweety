@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>My Little Tweety</title>
+</head>
+<body bgcolor="white">
+<center>
+<h1>Welcome to Tweety </h1>
+<%  cuenta := request anyParameterValueAt: 'login'. 
+ (cuenta size) > 0
+  ifTrue: 
+  [ session at: cuenta ifPresent: 
+       [ :user | response write: ('<p></p></p><h3>Hello ', user nombre,'</h3>').
+                  (user listaRecibidos) reverse do:[:mensaje| response write: ('<p></p></p><h5>@',(mensaje duenio nick),' - ',(mensaje fecha)printString,' > ', (mensaje cuerpo),'.</h5>').].].
+  ].
+%>
+<p></p>
+The date today is <%= Date today %>
+</center> 
+</body>
+</html>
